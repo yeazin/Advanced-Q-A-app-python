@@ -4,14 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Document</title>
 </head>
 <body>
-    <h1> This is a to do app </h1>
-    {% for td in todo %}
-    <p>{{ td }}</p>
-    {% empty %}
-    <h5> Sorry no do list to show </h5>
-    {% endfor %}
+    <div class="container">
+        <div class="wrapper_box">
+            <nav>
+                <h5>To DO app</h5>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                <ul>
+                    <li><a href="">All List</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#addtodo">Add Todo</a></li>
+                    <li><a href="">Recent</a></li>
+                    <li><a href="">sign in</a></li>
+                </ul>
+            </nav>
+
+            <div class="todo_app">
+                <table class="table edit_table">
+                    {% for td in todo %}
+                    <tr>
+                        <td>{{td }} </td>
+                        <td> 
+                            <i class="far fa-edit"></i> |
+                            <i class="far fa-trash-alt"></i>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+    </div>
+    </div>
+
+
+
+
+
+
+  <!-- Add todo  html -->
+  
+  <div class="modal fade" id="addtodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content model_edit">
+        <div class="modal-header edit_header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create To do List </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="cross" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'create_todo' %}" method="POST">
+                <div class="form-group">
+                  {% csrf_token %}
+                  <input type="text" name='todo' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="add a todo">
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+          </form>
+        </div>
+        <div class="modal-footer edit_footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Todo -->
+
+  <!-- Delete todo -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>
