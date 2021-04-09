@@ -26,11 +26,9 @@ class CreateTodoView(View):
     
 class EditTodoView(View):
 
-    def get(self, request, *args, **kwargs):
-        return render (request, 'index.html')
-    
-    def post(self, request,pk,  *args, **kwargs):
-        obj = get_object_or_404(ToDo, id=pk)
+
+    def post(self, request,id,  *args, **kwargs):
+        obj = get_object_or_404(ToDo, id=id )
         obj.list_name  = request.POST.get('todo')
         obj.save()
         return redirect('home')

@@ -28,14 +28,24 @@
 
             <div class="todo_app">
                 <table class="table edit_table">
-                    {% for td in todo %}
-                    <tr>
-                        <td>{{td }} </td>
+                    {% for todo in todo %}
+                    {% if forloop.counter|divisibleby:2 %}
+                    <tr class="odd_class">
+                        <td >{{todo }} </td>
                         <td> 
-                            <i class="far fa-edit"></i> |
+                            <a href=""  data-toggle="modal" data-target="#edit_todo{{ todo.id }}" > <i class="far fa-edit"></i></a> |
                             <i class="far fa-trash-alt"></i>
-                        </td>
+                        </td> 
                     </tr>
+                    {% else %}
+                    <tr class="even_class">
+                      <td >{{todo }} </td>
+                      <td> 
+                         <a href=""  data-toggle="modal" data-target="#edit_todo{{ todo.id }}" > <i class="far fa-edit"></i></a> |
+                          <i class="far fa-trash-alt"></i>
+                      </td> 
+                  </tr>
+                  {% endif %}
                     {% endfor %}
                 </table>
             </div>
@@ -76,6 +86,31 @@
   </div>
 
   <!-- Edit Todo -->
+  <div class="modal custom-modal fade" id="edit_todo{{ todo.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content model_edit">
+        <div class="modal-header edit_header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit To do List </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="cross" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+                <div class="form-group">
+                  {% csrf_token %}
+                  <input type="text" name='todo' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="add a todo" value="{{ todo.list_name }}">
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+          </form>
+        </div>
+        <div class="modal-footer edit_footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Delete todo -->
 

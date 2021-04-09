@@ -18,6 +18,7 @@ nav h5{
     float: left;
     padding: 15px;
     color:azure;
+
 }
 nav {
     width: 100%;
@@ -35,11 +36,19 @@ nav ul {
     display: inline-flex;
     
 }
+i{
+    cursor: pointer;
+	color:#95a5a6;
+	
+}
 nav ul li{
     float:right;
 }
 nav ul li a{
     padding: 10px;
+}
+.edit_table tr td{
+    border-top:none;
 }
 .edit_table{
     border-top:none;
@@ -47,6 +56,7 @@ nav ul li a{
 .todo_app{
     width: 70%;
     margin: 0 auto;
+    margin-top:20px;
 }
 .model_edit{
     background-color: #2c3e50;
@@ -61,4 +71,13 @@ nav ul li a{
 
 .edit_footer{
     border-top:none;
+}
+.even_class{
+    background-color: #2c3e50;
+}
+.odd_class{
+    background-color: transparent;
+}
+tr td{
+	color:#f1f2f6;
 }
