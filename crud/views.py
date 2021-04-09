@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.core.paginator import Paginator
-from .models import ToDo
-
+from .models import ToDo, Todouser
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import authenticate, login,logout
+from django.utils.decorators import method_decorator
 
 class HomeApp(View):
 
@@ -14,7 +19,7 @@ class HomeApp(View):
         context = {
             'todo':page_obj
         }
-        return render (request, 'index.html', context)
+        return render (request, 'app.html', context)
         
 class CreateTodoView(View):
 
@@ -23,7 +28,6 @@ class CreateTodoView(View):
 
     def post(self, request, *args, **kwargs):
         list_name = request.POST.get('todo')
-
         todo_obj = ToDo(list_name= list_name)
         todo_obj.save()
         return redirect ('home') 
@@ -42,3 +46,60 @@ class DeleteTodoView(View):
         obj = get_object_or_404(ToDo, id=id)
         obj.delete()
         return redirect('home')
+
+class CreateUser(View):
+    def get(self,request, *args, **kwargs):
+        return render (request,'create_user.html')
+    def post(self, request, *args,**kwargs):
+        data = request.POST
+        email = data.get('email')
+        username = data.get('username')
+        image = request.FILES.get('image')
+        password1 = data.get('password1')
+        password2 = data.get('password2')
+        user = User.objects.all().filter(username=username)
+        if user:
+            messages.warning(request,'Username Already Exits!')
+            return redirect('create_user')
+        elif password1 != password2:
+            messages.info(request, 'Password Didnot Match')
+            return redirect ('create_user')
+        else:
+            auth_info = {
+            'email':email,
+            'username':username,
+            'password':make_password(password1)
+
+            }
+            user = User(**auth_info)
+            user.save() 
+            todouser = Todouser(user=user, username=username, email=email)
+            todouser.save()
+            messages.success(request,'Thanks for Sign In')
+            return redirect('home')
+
+class LoginView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'login.html')
+    def post(self, request,*args,**kwargs):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.warning(request, 'Sorry! username or password didn`t match')
+            return redirect('login')
+
+class DashboardView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request,*args,**kwargs):
+        current_user = request.user
+        context={
+            'user':current_user
+        }
+        return render(request, 'dashboard.html', context)

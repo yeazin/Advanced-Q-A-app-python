@@ -1,36 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="wrapper_box">
-            <nav>
-                <h5>To DO app</h5>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                <ul>
-                    <li><a href="">All List</a></li>
-                    <li><a href="" data-toggle="modal" data-target="#addtodo">Add Todo</a></li>
-                    <li><a href="">Recent</a></li>
-                    <li><a href="">sign in</a></li>
-                </ul>
-            </nav>
+{% extends 'base.html' %}
+{% block title %} Slack App {% endblock %}
+{% block body %}
 
             <div class="todo_app">
                 <table class="table edit_table">
                     {% for todo in todo %}
                     {% if forloop.counter|divisibleby:2 %}
                     <tr class="odd_class">
+                        <td>{{ todo.username }}</td>
                         <td >{{todo }} </td>
                         <td> 
                             <a href=""  data-toggle="modal" data-target="#edit_todo{{ todo.id }}" > <i class="far fa-edit"></i></a> |
@@ -39,6 +16,7 @@
                     </tr>
                     {% else %}
                     <tr class="even_class">
+                      <td>{{ todo.username }}</td>
                       <td >{{todo }} </td>
                       <td> 
                          <a href=""  data-toggle="modal" data-target="#edit_todo{{ todo.id }}" > <i class="far fa-edit"></i></a> |
@@ -58,7 +36,7 @@
                   <a class="page-link" href="?page={{ todo.previous_page_number }}">Previous</a>
                 </li>
               {% else %}
-                <li class="page-item disabled">
+                <li class="page-item hidden">
                   <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                 </li>
               {% endif %}
@@ -79,7 +57,7 @@
                   <a class="page-link" href="?page={{ todo.next_page_number }}">Next</a>
                 </li>
               {% else %}
-                <li class="page-item disabled">
+                <li class="page-item hidden">
                   <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
                 </li>
               {% endif %}
@@ -87,8 +65,6 @@
           </nav>
           <!--end of Pagination-->
 
-    </div>
-    </div>
 
 
 
@@ -151,10 +127,4 @@
   </div>
 
   <!-- Delete todo -->
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock %}

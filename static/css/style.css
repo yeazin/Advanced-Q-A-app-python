@@ -83,5 +83,77 @@ tr td{
 	color:#f1f2f6;
 }
 .hidden{
-    display: hidden;
+    display: none;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #bfc2c5;
+    background-color: #3b556f;
+    box-shadow: 0px 2px 0px 1px#2c3e50;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #2c3e50;
+}
+.form_wrap{
+    width: 70%;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #2c3e50;
+    border-radius: 5px;
+}
+.form_wrap_login{
+    width: 50%;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #2c3e50;
+    border-radius: 5px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #0c0c0c;
+    background-color: #4e7294;
+    background-clip: padding-box;
+    border: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+form ::placeholder{
+    color:black;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #3c5873;
+    border:none;
+}
+.btn-primary:hover{
+    background-color: #768ca2;
+}
+.messages{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: -40px;
+}
+.todowrap{
+    width:80%;
+    display: inline-block;
+    margin: 0 auto;
+
+    
+}
+.todo{
+    width:20%;
+
+    margin: 1px;
+    height: 40px;
+    background-color: red;
 }

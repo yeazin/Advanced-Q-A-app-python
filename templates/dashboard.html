@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} {% endblock %}
+{% block body %}
+{% if messages %}
+<div class="messages" >
+    {% for message in messages %}
+        <div class="alert alert-primary" {% if message.tags %}
+             class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{{ user.username }}
+
+{% for todo in user.ToDo %}
+{{ todo }}
+{% endfor %}
+{% endblock %}
