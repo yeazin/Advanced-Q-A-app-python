@@ -3,41 +3,12 @@
 
 {% block body %}
     <div class="todowrap">
+    {% for todo in todo %}
         <div class="todo">
-
+            <div>
+                <h3>{{todo |truncatechars:12}}</h3>
+            </div>
         </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
-        <div class="todo">
-            
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}
