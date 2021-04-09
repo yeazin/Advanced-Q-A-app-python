@@ -49,6 +49,44 @@
                     {% endfor %}
                 </table>
             </div>
+
+          <!--Pagination-->
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              {% if todo.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ todo.previous_page_number }}">Previous</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+              {% endif %}
+              {% for i in todo.paginator.page_range %}
+                {% if todo.number == i %}
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link">
+                      {{ i }}
+                      <span class="sr-only">(current)</span>
+                    </span>
+                  </li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if todo.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ todo.next_page_number }}">Next</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+          <!--end of Pagination-->
+
     </div>
     </div>
 
@@ -86,7 +124,7 @@
   </div>
 
   <!-- Edit Todo -->
-  <div class="modal custom-modal fade" id="edit_todo{{ todo.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal custom-modal fade" id="edit_todo{{ todo.id }}" tabindex="-1" role="dialog" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content model_edit">
         <div class="modal-header edit_header">
