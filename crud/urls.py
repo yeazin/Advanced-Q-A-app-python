@@ -8,5 +8,6 @@ urlpatterns = [
     path('delete_todo/<int:id>', views.DeleteTodoView.as_view(), name='delete'),
     path('sign_in/', views.CreateUser.as_view(), name='create_user'),
     path('login/', views.LoginView.as_view(), name='login'),
-    path('dashboard/', views.DashboardView.as_view(), name='dashboard')
+    path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
+    path('logout/', views.LogoutView.as_view(), name='logout')
 ]

@@ -92,6 +92,14 @@ class LoginView(View):
             messages.warning(request, 'Sorry! username or password didn`t match')
             return redirect('login')
 
+class LogoutView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    def get(self,request):
+        logout(request)
+        return redirect('login')
+        
 class DashboardView(View):
     @method_decorator(login_required(login_url='login'))
     def dispatch(self, request, *args, **kwargs):
