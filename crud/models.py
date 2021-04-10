@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Todouser(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING,related_name='users')
     email = models.EmailField(blank=True)
     username = models.CharField(blank=False, max_length=200)
     image = models.ImageField(upload_to='img/', blank=True, null=True)

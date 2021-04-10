@@ -10,8 +10,11 @@
 </div>
 {% endif %}
 
-{{ user.username }}
-
+{{ user.username }}<br>
+{{ user.email }}
+{% for todo in todo %}
+    {{ todo.list_name }}
+{% endfor %}
 {% for todo in user.ToDo %}
 {{ todo }}
 {% endfor %}

@@ -99,7 +99,7 @@ class LogoutView(View):
     def get(self,request):
         logout(request)
         return redirect('login')
-        
+
 class DashboardView(View):
     @method_decorator(login_required(login_url='login'))
     def dispatch(self, request, *args, **kwargs):
@@ -107,7 +107,9 @@ class DashboardView(View):
 
     def get(self,request,*args,**kwargs):
         current_user = request.user
+        todo = ToDo.objects.all().filter(user= request.user )
         context={
-            'user':current_user
+            'user':current_user,
+            'todo':todo
         }
         return render(request, 'dashboard.html', context)
