@@ -7,7 +7,8 @@ class Todouser(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING,related_name='users')
     email = models.EmailField(blank=True)
     username = models.CharField(blank=False, max_length=200)
-    image = models.ImageField(upload_to='img/', blank=True, null=True)
+    bio = models.TextField(max_length=500, blank=True)
+    image = models.ImageField(upload_to='img/')
 
     def __str__(self):
         return f"{self.username} | {self.user}"

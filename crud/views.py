@@ -55,6 +55,7 @@ class CreateUser(View):
         email = data.get('email')
         username = data.get('username')
         image = request.FILES.get('image')
+        #bio = data.get('bio')
         password1 = data.get('password1')
         password2 = data.get('password2')
         user = User.objects.all().filter(username=username)
@@ -66,17 +67,16 @@ class CreateUser(View):
             return redirect ('create_user')
         else:
             auth_info = {
-            'email':email,
             'username':username,
             'password':make_password(password1)
 
             }
             user = User(**auth_info)
             user.save() 
-            todouser = Todouser(user=user, username=username, email=email)
-            todouser.save()
-            messages.success(request,'Thanks for Sign In')
-            return redirect('home')
+        user_obj = Todouser(user=user,email=email)
+        user_obj.save(Todouser)
+        messages.success(request,'Thanks for Sign In')
+        return redirect('dashboard')
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -107,9 +107,7 @@ class DashboardView(View):
 
     def get(self,request,*args,**kwargs):
         current_user = request.user
-        todo = ToDo.objects.all().filter(user= request.user )
         context={
-            'user':current_user,
-            'todo':todo
+            
         }
         return render(request, 'dashboard.html', context)
