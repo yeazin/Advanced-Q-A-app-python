@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.core.paginator import Paginator
-from .models import ToDo, Todouser
+from .models import Question, Quser,Topics
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -12,14 +12,14 @@ from django.utils.decorators import method_decorator
 class HomeApp(View):
 
     def get(self, request, *args, **kwargs):
-        todo_obj = ToDo.objects.all().order_by('-id')
-        paginator = Paginator(todo_obj, 9)
+        question_obj = Question.objects.all().order_by('-id')
+        paginator = Paginator(question_obj, 9)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
-            'todo':page_obj
+            'question':question_obj
         }
-        return render (request, 'app.html', context)
+        return render (request, 'home/app.html', context)
         
 class CreateTodoView(View):
 
@@ -49,7 +49,7 @@ class DeleteTodoView(View):
 
 class CreateUser(View):
     def get(self,request, *args, **kwargs):
-        return render (request,'create_user.html')
+        return render (request,'user/create_user.html')
     def post(self, request, *args,**kwargs):
         data = request.POST
         email = data.get('email')
@@ -80,7 +80,7 @@ class CreateUser(View):
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'login.html')
+        return render(request, 'user/login.html')
     def post(self, request,*args,**kwargs):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -110,4 +110,4 @@ class DashboardView(View):
         context={
             
         }
-        return render(request, 'dashboard.html', context)
+        return render(request, 'user/dashboard.html', context)

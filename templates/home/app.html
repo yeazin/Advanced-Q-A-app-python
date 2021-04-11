@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+{% block title %} {% endblock %}
+
+{% block body %}
+    <div class="catagory_wrap">
+        <h1> hello there</h1>
+    </div>
+
+    <div class="question_wrap">
+    {% for question in question%}
+        <div class="question">
+            <div>
+                <h5>{{question}}</h3>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}f 

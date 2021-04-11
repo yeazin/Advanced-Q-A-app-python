@@ -1,0 +1,5 @@
+ installed app - 
+ { 'django.contrib.humanize',
+    pillow,
+ }
+ 
