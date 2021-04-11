@@ -10,6 +10,8 @@
         <li><a href="" data-toggle="modal" data-target="#addtodo">Add Todo</a></li>
         <li><a href="">Recent</a></li>
         {% if request.user.is_authenticated %}
+
+        <li><a href="{% url 'dashboard' %}">Dasboard </a></li>
         <li><a href="{% url 'logout' %}">Logout </a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Login In </a></li>

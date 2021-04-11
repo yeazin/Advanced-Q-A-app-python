@@ -2,17 +2,29 @@
 {% block title %} {% endblock %}
 
 {% block body %}
-    <div class="catagory_wrap">
-        <h1> hello there</h1>
-    </div>
-
-    <div class="question_wrap">
-    {% for question in question%}
-        <div class="question">
-            <div>
-                <h5>{{question}}</h3>
+<div class="content_wrap">
+            <div class="catagory_wrap">
+                {% for topics in topics %}
+                <p>{{ topics }}</p>
+                {% endfor %}
             </div>
-        </div>
-    {% endfor %}
-    </div>
+
+            <div class="question_wrap">
+            {% for question in question%}
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="question_even">
+                    <div>
+                        <p>{{question}}</p>
+                    </div>
+                </div>
+            {% else %}
+                <div class="question_odd">
+                    <div>
+                        <p>{{question}}</p>
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+</div>
 {% endblock %}f 

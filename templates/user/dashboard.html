@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home/base.html' %}
 {% block title %} {% endblock %}
 {% block body %}
 {% if messages %}
@@ -12,10 +12,13 @@
 
 {{ user.username }}<br>
 {{ user.email }}
+{% load static %}
+<img src="{% static 'user.image.url' %}" alt="">
+{{ user.password }}
 {% for todo in todo %}
     {{ todo.list_name }}
 {% endfor %}
-{% for todo in user.ToDo %}
-{{ todo }}
+{% for question in user_q %}
+{{ question }}
 {% endfor %}
 {% endblock %}

@@ -9,12 +9,15 @@ body{
     background: linear-gradient(39deg, rgba(52,73,94,1) 17%, rgba(52,73,94,1) 24%, rgba(61,89,117,1) 87%);
     height: 600px;
     border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
     vertical-align:top;
 
     
 
+}
+.content_wrap{
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
 }
 nav div{
     width:20%;
@@ -144,23 +147,40 @@ form ::placeholder{
 .messages{
     width: 50%;
     margin: 0 auto;
-    margin-bottom: -40px;
+    margin-bottom: 0px;
 }
 .catagory_wrap{
     width: 22%;
+    padding: 10px;
     
+}
+.catagory_wrap p{
+    background-color: #5b7fa2;
+    padding: 7px;
+    border-radius: 20px;
+    margin:3px;
 }
 .question_wrap{
-    width:60%;
-    display: block;
-    margin: 0 auto;
+    width:75%;
     
 }
-.question{
+.question_even{
+    color:#f1eaea;
     margin:0 auto;
     width:70%;
     margin: 2px;
-    height: 60px;
+    padding: 10px 10px;
+    background-color: #3a526b;
+    border-radius: 5px;
+    text-align: left;
+}
+.question_odd{
+    text-align: left;
+    color:#f1eaea;
+    margin:0 auto;
+    width:70%;
+    margin: 2px;
+    padding: 10px 10px;
     background-color: #2c3e50;
     border-radius: 5px;
 }

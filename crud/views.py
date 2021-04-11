@@ -13,11 +13,13 @@ class HomeApp(View):
 
     def get(self, request, *args, **kwargs):
         question_obj = Question.objects.all().order_by('-id')
+        topics_obj = Topics.objects.all().order_by('-id')
         paginator = Paginator(question_obj, 9)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
-            'question':question_obj
+            'question':question_obj,
+            'topics':topics_obj
         }
         return render (request, 'home/app.html', context)
         
@@ -107,7 +109,8 @@ class DashboardView(View):
 
     def get(self,request,*args,**kwargs):
         current_user = request.user
+        user_q = Question.objects.all().filter(user=request.user)
         context={
-            
+            'user':current_user
         }
         return render(request, 'user/dashboard.html', context)
