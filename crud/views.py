@@ -109,7 +109,7 @@ class DashboardView(View):
 
     def get(self,request,*args,**kwargs):
         current_user = request.user
-        user_q = Question.objects.all().filter(user=request.user)
+        #user_q = Question.objects.filter(user=current_user)
         context={
             'user':current_user
         }

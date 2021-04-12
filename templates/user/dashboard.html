@@ -18,7 +18,7 @@
 {% for todo in todo %}
     {{ todo.list_name }}
 {% endfor %}
-{% for question in user_q %}
+{% for question in user.all %}
 {{ question }}
 {% endfor %}
 {% endblock %}
