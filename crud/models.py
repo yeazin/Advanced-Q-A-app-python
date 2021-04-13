@@ -30,4 +30,8 @@ class Question(models.Model):
     class Meta:
         verbose_name = " Questions"
         verbose_name_plural = 'Questions'
-    
+
+# made by  Yeasin
+# facebook : fb.com/yeariha.farsin
+# github : github.com/yeazin
+# contact : naz.yeasin@gmail.com

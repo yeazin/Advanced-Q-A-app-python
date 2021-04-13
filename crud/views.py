@@ -114,3 +114,9 @@ class DashboardView(View):
             'user':current_user
         }
         return render(request, 'user/dashboard.html', context)
+
+
+# made by  Yeasin
+# facebook : fb.com/yeariha.farsin
+# github : github.com/yeazin
+# contact : naz.yeasin@gmail.com

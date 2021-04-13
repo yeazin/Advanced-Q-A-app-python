@@ -12,3 +12,8 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logout'),
     
 ]
+
+# made by  Yeasin
+# facebook : fb.com/yeariha.farsin
+# github : github.com/yeazin
+# contact : naz.yeasin@gmail.com
